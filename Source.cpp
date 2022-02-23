@@ -1,39 +1,65 @@
 #include <iostream>
 using namespace std;
 
+double scitanie(double c1, double c2) {
+    return c1 + c2;
+}
+double odcitanie(double c1, double c2) {
+    return c1 - c2;
+}
+double delenie(double c1, double c2) {
+    return c1 / c2;
+}
+double nasobenie(double c1, double c2) {
+    return c1 * c2;
+}
+
 int main()
 {
-             char pole[100];
-    int i; int cisla = 0, medzery = 0, specialneznaky = 0;
-    int samohlasky = 0, spoluhlasky = 0;
-    cout << "Napis nieco \n";
-    gets_s(pole);
-         for (i = 0; pole[i] != '\0'; i++) {
-             if (pole[i] == 'a' || pole[i] == 'e' || pole[i] == 'i' || pole[i] == 'o' || pole[i] == 'u' ||
-            pole[i] == 'A' || pole[i] == 'E' || pole[i] == 'I' || pole[i] == 'O' || pole[i] == 'U') {
-            samohlasky++;
-        }
-             else if (
-            (pole[i] >= 'a' && pole[i] <= 'z' || pole[i] >= 'A' && pole[i] <= 'Z')) {
-            spoluhlasky++;
-        }
-                else if (pole[i] >= '0' && pole[i] <= '9')
-        {
-            cisla++;
-        }
-             else if (pole[i] == ' ') {
-            medzery++;
-        }
-              else {
-            specialneznaky++;
-        }
+start:
+    int operacia;
+    double c1, c2;
+    cout << "Zadaj cislo 1: ";
+        cin >> c1;
+    cout << "Zadaj cislo 2: ";
+        cin >> c2;
+
+    cout << "Vyber operaciu \n 1- scitanie\n 2- odcitanie\n 3- nasobenie\n 4- delenie\n ==> ";
+
+        cin >> operacia;
+
+    if (operacia == 1) {
+        double vysledok = scitanie(c1, c2);
+        cout << "Vysledok: " << vysledok << endl;
     }
-    system("CLS");
-            cout << "\nZadane pole: " << pole;
-            cout << "\nsamohlasky: " << samohlasky;
-            cout << "\nspoluhlasky: " << spoluhlasky;
-            cout << "\ncisla: " << cisla;
-            cout << "\nmedzery: " << medzery;
-            cout << "\nspecialne znaky: " << specialneznaky;
-    return 0;
+    if (operacia == 2) {
+        double vysledok = odcitanie(c1, c2);
+        cout << "Vysledok: " << vysledok << endl;
+    }
+    if (operacia == 3) {
+        double vysledok = nasobenie(c1, c2);
+        cout << "Vysledok: " << vysledok << endl;
+    }
+    if (operacia == 4) {
+        if (c2 == 0) {
+            cout << "0 sa delit neda, skus znova." << endl;
+            goto start;
+        }
+        double vysledok = delenie(c1, c2);
+        cout << "Vysledok: " << vysledok << endl;
+    }
+    if (operacia > 4 || operacia < 1) {
+        cout << "Chybna operacia" << endl;
+        goto start;
+    }
+
+    cout << "Dalsi priklad? (1- ano; 0- nie): ";
+    int volba;
+    cin >> volba;
+    if (volba == 1) {
+        goto start;
+    }
+    else {
+        return 0;
+    }
 }
